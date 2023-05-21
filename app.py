@@ -33,7 +33,7 @@ def callback():
         
     return"OK"
 
-@handler.add(MessageEvent, message=TextSendMessage)
+@handler.add(MessageEvent, message=TextMessage)
 def handler_message(event):
     json_data=json.loads(str(event))
     json_str=json.dumps(json_data,indent=4)
