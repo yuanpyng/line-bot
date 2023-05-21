@@ -14,8 +14,8 @@ import json
 import os
 
 app=Flask(__name__)
-line_bot_api=LineBotApi(os.getenv("CHANNEL_ACCESS_TOKEN"))
-handler=WebhookHandler(os.getenv("CHANNEL_SECRET"))
+line_bot_api=LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
+handler=WebhookHandler(os.getenv('CHANNEL_SECRET'))
 
 @app.route("/callback",methods=["POST"])
 def callback():
@@ -39,16 +39,8 @@ def handler_message(event):
     json_str=json.dumps(json_data,indent=4)
     print(json_str)
     msg=event.message.text 
-    image_msg=reply_image(msg)
-@app.route("/broadcast")
-def broadcast_msg():
-    if request.args.get("message"):
-        message=request.args.get("message")
-        try:
-            line_bot_api.broadcast(TextSendMessage(message))
-            return "broadcast OK"
-        except:
-            return "broadcast error"
+    line_bot_api.reply_message(event.reply_token, msg)
+
  
     
 if __name__=="__main__":
