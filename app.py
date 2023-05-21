@@ -39,7 +39,7 @@ def handler_message(event):
     json_str=json.dumps(json_data,indent=4)
     print(json_str)
     msg=event.message.text 
-    line_bot_api.reply_message(event.reply_token, msg)
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(msg))
 
  
     
